@@ -7,6 +7,7 @@ const app = express()
 
 //file imports
 const landing = require('./routes/landing')
+const auth = require('./routes/auth')
 
 //middlewares
 app.use(express.json({ limit: '1mb' }), express.urlencoded({ extended: true, limit: '1mb' }))
@@ -24,7 +25,8 @@ app.use(session({
 
 
 //routing
-app.get('/', landing)
+app.use('/', landing)
+app.use('/auth', auth)
 
 //listen
 const PORT = 8080 || process.env.PORT
