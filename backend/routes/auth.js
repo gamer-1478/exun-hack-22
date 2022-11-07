@@ -53,7 +53,7 @@ router.post('/register', async (req, res)=>{
                       res.send({ "msg": "Successfully Authenticated", "success": "true" });
                     });
                   }
-                })(req, res);
+                })(req, res); 
               })
             }).catch((err) => console.log(err));
           })

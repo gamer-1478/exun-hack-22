@@ -3,11 +3,13 @@ const express = require('express')
 const app = express()
     session = require('cookie-session'),
     passport = require('passport')
+const mongoose = require('mongoose')
 
 
 //file imports
 const landing = require('./routes/landing')
 const auth = require('./routes/auth')
+const adminAdd = require('./routes/add')
 
 //middlewares
 app.use(express.json({ limit: '1mb' }), express.urlencoded({ extended: true, limit: '1mb' }))
@@ -18,15 +20,15 @@ app.use(session({
 }))
 
 //connect to mongodb
-// const dbUri = process.env.MONGO_URI
-// mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
+const dbUri = process.env.MONGO_URI
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).then(console.log("Connected to mongodb"))
 
 //initialize passport after this
-
 
 //routing
 app.use('/', landing)
 app.use('/auth', auth)
+app.use('/add', adminAdd)
 
 //listen
 const PORT = 8080 || process.env.PORT
