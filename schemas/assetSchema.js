@@ -4,6 +4,7 @@ const assetSchema = new mongoose.Schema({
     game_id: String,
     asset_name: String,
     url: String,
+    description: String,
 })
 
-export default mongoose.model("Asset", assetSchema)
+module.exports= mongoose.model("Asset", assetSchema)

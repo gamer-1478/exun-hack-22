@@ -6,4 +6,4 @@ const cartSchema = new mongoose.Schema({
     payment_link: String,
 })
 
-export default mongoose.model("Cart", cartSchema)
+module.exports= mongoose.model("Cart", cartSchema)

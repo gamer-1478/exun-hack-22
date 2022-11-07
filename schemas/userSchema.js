@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         default: dateStringWithTime
     },
     userId: reqString,
+    isAdmin: Boolean,
+    cart: [String],
+    orders: [String],
+    library: [String],
 })
 
 module.exports = mongoose.model("User", userSchema)

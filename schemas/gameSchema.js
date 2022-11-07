@@ -9,4 +9,4 @@ const gameSchema = new mongoose.Schema({
     videos: [{type: String}],
 })
 
-export default mongoose.model("Game", gameSchema)
+module.exports = mongoose.model("Game", gameSchema)
