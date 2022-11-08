@@ -1,10 +1,11 @@
 require("dotenv").config()
 const express = require('express')
 const app = express()
-    session = require('cookie-session'),
-    passport = require('passport')
+session = require('cookie-session'),
+passport = require('passport')
 const mongoose = require('mongoose')
-
+const bodyparser = require('bodyparser')
+const ejs  = require('ejs')
 
 //file imports
 const landing = require('./routes/landing')
@@ -34,4 +35,4 @@ app.use('/store', store)
 
 //listen
 const PORT = 8080 || process.env.PORT
-app.listen(PORT, ()=> console.log(`Connected on port ${PORT}`))
+app.listen(PORT, () => console.log(`Connected on port ${PORT}`))
