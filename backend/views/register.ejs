@@ -1,11 +1,11 @@
 <%- include(path + '/views/partials/nav.ejs') %> 
 
-<form action="/auth/login" method="post" style="width: 500px; margin: 30vh auto; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 200px;">
+<form action="/auth/register" method="post" style="width: 500px; margin: 30vh auto; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 200px;">
     Register
     <input type="text" name="name" placeholder="Enter Name">
     <input type="email" name="email" placeholder="Enter Email">
     <input type="password" name="password" placeholder="Enter Password">
-    <input type="password" name="confirm-password" placeholder="Confirm Password">
+    <input type="password" name="confirmPassword" placeholder="Confirm Password">
     <button type="submit">Submit</button>
 </form>
 

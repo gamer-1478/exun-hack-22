@@ -1,11 +1,12 @@
 require("dotenv").config()
 const express = require('express')
 const app = express()
-session = require('cookie-session'),
+session = require('express-session'),
 passport = require('passport')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 const ejs  = require('ejs')
+const passportInit = require('./middleware/passport.js')
 
 //file imports
 const landing = require('./routes/landing')
@@ -20,7 +21,8 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
-}))
+ }));
+ passportInit(passport)
 
 //connect to mongodb
 const dbUri = process.env.MONGO_URI

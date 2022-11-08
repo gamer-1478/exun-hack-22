@@ -1,25 +1,26 @@
 const router = require('express').Router();
 const User = require('../schemas/userSchema.js'),
     bcrypt = require("bcrypt"),
-    { uuid } = require('uuidv4');
-    passport = require('passport');
+    { uuid } = require('uuidv4'),
+    passport = require('passport'),
+    {ensureAuthenticated, forwardAuthenticated} = require('../middleware/authenticate.js')
 
-router.get('/login', function (req, res) {
+router.get('/login', forwardAuthenticated, function (req, res) {
     res.render('login', {path: process.cwd()})
 })
 
-router.get('/register', (req, res)=>{
+router.get('/register', forwardAuthenticated, (req, res)=>{
     res.render('register', {path: process.cwd()})
 })
 //register
 router.post('/register', async (req, res)=>{
     let errors = [];
-    const { name, email, password, confirmPassword } = req;
+    const { name, email, password, confirmPassword } = req.body;
   
     if (!name || !email || !password) {
       errors.push({ msg: "All fields are required" })
     };
-    if (password !== confirmPassword) {
+    if (password != confirmPassword) {
       errors.push({ msg: "Passwords do not match" });
     }
     if (errors.length > 0) {
@@ -63,7 +64,7 @@ router.post('/register', async (req, res)=>{
   
 })
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res, next) => {
     User.findOne({ email: req.email }).then(user => {
         passport.authenticate('local', (err, user, info) => {
             if (err) throw err;
