@@ -18,7 +18,7 @@ router.post('/game', adminAuth, async (req, res) => {
             return res.send({ errorMessage: "Game already exists." });
         }
         const newGame = new Game({
-            id: uuid(),
+            Game_id: uuid(),
             game_name,
             assets,
             installation_link,
@@ -34,25 +34,42 @@ router.post('/game', adminAuth, async (req, res) => {
     }
 });
 
+router.get('/asset', (req, res)=>{
+    res.render('addasset', {path: process.cwd()})
+})
+router.get('/game', (req, res)=>{
+    res.render('addgame', {path: process.cwd()})
+})
+
 router.post('/game', async (req, res) => {
-    const { game_name, cost, installation_link, images, videos } = req.body;
-    if (game_name != '' && installation_link != '') {
-        const gameID = uuid()
-        const assets = []
-        const newgame = new Game({
-            id: gameID,
+    try {
+        const { game_name, assets, installation_link, cost, images, videos } = req.body;
+        if (!game_name || !installation_link || !cost || !images || !videos) {
+            return res.send({ errorMessage: "Please enter all required fields." });
+        }
+        if (cost < 0) {
+            return res.send({ errorMessage: "Please enter a valid cost." });
+        }
+        const existingGame = await Game.findOne({ game_name });
+        if (existingGame) {
+            return res.send({ errorMessage: "Game already exists." });
+        }
+        const newGame = new Game({
+            id: uuid(),
             game_name,
             assets,
             installation_link,
             cost,
             images,
-            videos,
-        })
-        await newgame.save()
-        console.log("game added", game_name)
+            videos
+        });
+        const savedGame = await newGame.save();
+        res.json(savedGame);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send();
     }
-})
-
+});
 router.post('/asset', async (req, res)=>{
     const {game_id, asset_name, url, description} = req;
     if (asset_name!='', game_id!=''){
