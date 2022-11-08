@@ -1,6 +1,6 @@
 const router = require('express').Router();
-
-router.get('/', async (req, res) => {
+const {ensureAuthenticated} = require('../middleware/authenticate')
+router.get('/', ensureAuthenticated, async (req, res) => {
     res.render('index', {'path': process.cwd()})
 })
 
