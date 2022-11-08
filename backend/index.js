@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 const landing = require('./routes/landing')
 const auth = require('./routes/auth')
 const adminAdd = require('./routes/add')
+const store = require('./routes/store')
 
 //middlewares
 app.use(express.json({ limit: '1mb' }), express.urlencoded({ extended: true, limit: '1mb' }))
@@ -29,6 +30,7 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true }).the
 app.use('/', landing)
 app.use('/auth', auth)
 app.use('/add', adminAdd)
+app.use('/store', store)
 
 //listen
 const PORT = 8080 || process.env.PORT

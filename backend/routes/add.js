@@ -4,7 +4,7 @@ const Asset = require('../schemas/assetSchema.js')
 const adminAuth = require('../middleware/authenticate.js')
 const { uuid } = require('uuidv4');
 
-router.post('/game', adminAuth, async (req, res) => {
+router.post('/game', async (req, res) => {
     const { game_name, cost, installation_link, images, videos } = req;
     if (game_name != '' && installation_link != '') {
         const gameID = uuid()
