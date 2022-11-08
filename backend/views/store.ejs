@@ -1,0 +1,7 @@
+<%- include(path + '/views/partials/nav.ejs') %> 
+
+<% for( game of games ) { %>
+    <a href="/store/<%= game.id %>"><h1><%= game.game_name %> </h1></a> 
+<% } %>
+
+<%- include(path + '/views/partials/nav.ejs') %> 

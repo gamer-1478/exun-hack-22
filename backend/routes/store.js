@@ -5,7 +5,7 @@ const Game = require('../schemas/gameSchema');
 router.get('/', async (req, res)=> {
     try{
         const games = await Game.find({})
-        res.send(games)
+        res.render('store', {games, path: process.cwd()})
     }catch(err){
         res.send({"msg":`${err}`})
     }
@@ -18,7 +18,7 @@ router.get('/:gameId', async(req, res)=>{
         if(!game){
             res.send({"msg": "No Game Found!"})
         }else{
-            res.send(game)
+            res.render('game', {path: process.cwd(), game})
         }
     }catch(err){
         res.send({"msg":`${err}`})

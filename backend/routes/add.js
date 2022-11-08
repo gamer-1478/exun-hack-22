@@ -4,6 +4,13 @@ const Asset = require('../schemas/assetSchema.js')
 const adminAuth = require('../middleware/authenticate.js')
 const { uuid } = require('uuidv4');
 
+router.get('/asset', (req, res)=>{
+    res.render('addasset', {path: process.cwd()})
+})
+router.get('/game', (req, res)=>{
+    res.render('addgame', {path: process.cwd()})
+})
+
 router.post('/game', async (req, res) => {
     try {
         const { game_name, assets, installation_link, cost, images, videos } = req.body;

@@ -1,0 +1,12 @@
+<%- include(path + '/views/partials/nav.ejs') %> 
+
+<h1><%= game.game_name %></h1>
+<% for (img of game.images) { %>
+    <img src="<%= img %>" alt=""> <br>
+<% } %>
+<% for (vid of game.videos) { %>
+    <iframe width="420" height="315" src="<%= vid %>"></iframe>
+<% } %>
+<button><a href="<%= game.installation_link%>">Install Now</a></button>
+
+<%- include(path + '/views/partials/nav.ejs') %> 
