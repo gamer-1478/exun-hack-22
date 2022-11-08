@@ -4,36 +4,6 @@ const Asset = require('../schemas/assetSchema.js')
 const adminAuth = require('../middleware/authenticate.js')
 const { uuid } = require('uuidv4');
 
-router.post('/game', adminAuth, async (req, res) => {
-    try {
-        const { game_name, assets, installation_link, cost, images, videos } = req.body;
-        if (!game_name || !assets || !installation_link || !cost || !images || !videos) {
-            return res.send({ errorMessage: "Please enter all required fields." });
-        }
-        if (cost < 0) {
-            return res.send({ errorMessage: "Please enter a valid cost." });
-        }
-        const existingGame = await Game.findOne({ game_name });
-        if (existingGame) {
-            return res.send({ errorMessage: "Game already exists." });
-        }
-        const newGame = new Game({
-            Game_id: uuid(),
-            game_name,
-            assets,
-            installation_link,
-            cost,
-            images,
-            videos
-        });
-        const savedGame = await newGame.save();
-        res.json(savedGame);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send();
-    }
-});
-
 router.get('/asset', (req, res)=>{
     res.render('addasset', {path: process.cwd()})
 })
