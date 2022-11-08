@@ -1,0 +1,11 @@
+<%- include(path + '/views/partials/nav.ejs') %> 
+
+<form action="/add/asset" method="post" style="width: 500px; margin: 30vh auto; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-height: 200px;">
+    <input type="text" name="game_id" placeholder="Enter game id">
+    <input type="text" name="asset_name" placeholder="Enter asset name">
+    <input type="text" name="url" placeholder="Enter image url">
+    <input type="text" height="90px" name="description" placeholder="Enter asset description">
+    <button type="submit">Submit</button>
+</form>
+
+<%- include(path + '/views/partials/nav.ejs') %> 

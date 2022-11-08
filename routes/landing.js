@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', async (req, res) => {
-    res.send({ "msg": blobs })
+    res.render('index', {'path': process.cwd()})
 })
 
 module.exports = router;
