@@ -4,12 +4,12 @@ const User = require('../schemas/userSchema.js'),
     { uuid } = require('uuidv4');
     passport = require('passport');
 
-router.get('/', function (req, res) {
-    res.send({"msg": "ok"})
+router.get('/login', function (req, res) {
+    res.render('login', {path: process.cwd()})
 })
 
 router.get('/register', (req, res)=>{
-    res.send({"msg": "ok"})
+    res.render('register', {path: process.cwd()})
 })
 //register
 router.post('/register', async (req, res)=>{
