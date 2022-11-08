@@ -13,7 +13,9 @@ const adminAdd = require('./routes/add')
 const store = require('./routes/store')
 
 //middlewares
-app.use(express.json({ limit: '1mb' }), express.urlencoded({ extended: true, limit: '1mb' }))
+app.use(express.json({ limit: '50mb' }), express.urlencoded({ extended: true, limit: '50mb' }))
+app.use(express.static('public'))
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
