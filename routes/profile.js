@@ -17,6 +17,9 @@ router.post('/', async (req, res) => {
     }
 })
 
-
+router.get('/library', (req, res)=>{
+    const library = req.user.library
+    res.render('', {library})
+})
 
 module.exports = router;

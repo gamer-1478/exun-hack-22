@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
         total += product.cost
         return product;
     })
+    var price_id;
     Promise.all(products).then(prods => {
         stripe.products.create({
             name: 'Cart Checkout',
@@ -27,7 +28,7 @@ router.get('/', (req, res) => {
                 currency: 'inr',
                 prod: prod.id,
             }).then(price => {
-                const price_id = price.id;
+                price_id = price.id;
             });
         });
         res.render("cart", { user: req.user, cart: products, total: total, price_id})
