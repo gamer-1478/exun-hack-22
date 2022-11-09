@@ -1,16 +1,16 @@
 const router = require('express').Router();
 const Game = require('../schemas/gameSchema.js')
 const Asset = require('../schemas/assetSchema.js')
-const adminAuth = require('../middleware/authenticate.js')
+const {ensureAuthenticated} = require('../middleware/authenticate.js')
 const { uuid } = require('uuidv4');
 
-router.get('/asset', (req, res)=>{
+router.get('/asset', ensureAuthenticated, (req, res)=>{
     res.render('addasset', {path: process.cwd()})
 })
-router.get('/game', (req, res)=>{
+router.get('/game', ensureAuthenticated, (req, res)=>{
     res.render('addgame', {path: process.cwd()})
 })
-router.post('/game', async (req, res) => {
+router.post('/game', ensureAuthenticated, async (req, res) => {
     try {
         const { game_name, assets, installation_link, cost, images, videos, description } = req.body;
         if (!game_name || !installation_link || !cost || !images || !videos || !description) {
@@ -43,7 +43,7 @@ router.post('/game', async (req, res) => {
         res.status(500).send();
     }
 });
-router.post('/asset', async (req, res)=>{
+router.post('/asset', ensureAuthenticated, async (req, res)=>{
     const {game_id, asset_name, url, description} = req;
     if (asset_name!='', game_id!=''){
         const assetID = uuid()

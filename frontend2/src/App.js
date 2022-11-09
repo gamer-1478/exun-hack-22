@@ -13,6 +13,7 @@ import ProfilePage from './pages/Profile';
 import { Community } from './pages/Community/Community';
 import { NewPost } from './pages/Community/NewPost';
 import { PostPage } from './pages/Community/PostPage';
+import { Cart } from './pages/Cart.jsx';
 
 function LogoutPage() {
     logout();
@@ -40,6 +41,7 @@ function App() {
             <Route path={'/community'} element={<Community />} />
             <Route path={'/newpost'} element={<NewPost />} />
             <Route path={'/logout'} element={<LogoutPage />} />
+            <Route path={'/cart'} element={<Cart />} />
           </Routes>
         </div>
       </Router>

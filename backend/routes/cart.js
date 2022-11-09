@@ -5,20 +5,19 @@ const Asset = require("../schemas/assetSchema");
 const { ensureAuthenticated } = require('../middleware/authenticate.js')
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-router.get('/', (req, res) => {
-    console.log(req.user.cart)
+router.get('/', ensureAuthenticated, (req, res) => {
     if (!req.user.cart.length > 0) {
-        return res.render("cart", { user: req.user, cart: [], total: 0 });
+        return res.send({ user: req.user, total: 0 });
     }
     var total = 0;
     var products = req.user.cart.map(async (product_orig) => {
-        var product = await Game.findOne({ id: product_orig.prodid }) || await Asset.findOne({ id: product_orig.prodid })
-        product = JSON.parse(JSON.stringify(product))
+        var product = await Game.findOne({ id: product_orig }) || await Asset.findOne({ id: product_orig })
         total += product.cost
+        product = JSON.parse(JSON.stringify(product))
         return product;
     })
     Promise.all(products).then(prods => {
-        res.render("cart", { user: req.user, cart: products, total: total })
+        res.send({ user: req.user, cart: prods, total: total })
     }).catch(err => {
         console.log(err)
     })
@@ -27,8 +26,7 @@ router.get('/', (req, res) => {
 
 router.get('/add/:id', ensureAuthenticated, async (req, res) => {
     const store_id = req.params.id;
-    var product = await Game.findOne({ id:store_id}) || await Asset.findOne({ id:store_id})
-    req.user.total+=product.cost
+    const product = await Game.findOne({ id:store_id}) || await Asset.findOne({ id:store_id})
     var cart = req.user.cart;
     cart.push(store_id);
     req.user.cart = cart
@@ -39,13 +37,13 @@ router.get('/add/:id', ensureAuthenticated, async (req, res) => {
 router.post('/delete/:id', ensureAuthenticated, async (req, res) => {
     var id = req.params.id;
     var cart = req.user.cart;
+    var product = await Game.findOne({id}) || await Asset.findOne({id})
     var index = cart.findIndex(product => product.id === id);
-    cart.splice(index, 1);
-    var product = await Game.findOne({ id:store_id}) || await Asset.findOne({ id:store_id})
+    cart.splice(index, 1)
     req.user.total-=product.cost
     req.user.cart = cart;
-    req.user.save();
-    res.send({ success: true });
+    await req.user.save();
+    res.send({ "msg":"Deleted Item", cart });
 })
 
 router.get('/checkout-confirm', ensureAuthenticated, async (req, res) => {

@@ -1,0 +1,15 @@
+.cart {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+.cart-element{
+    align-items: center;
+    text-align: center;
+}
+
+img{
+    height:200px;
+    width: 200px;
+}
+

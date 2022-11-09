@@ -51,7 +51,7 @@ export default function ItemPage() {
             <h1>{product.game_name}</h1>
             <h2>{product.description}</h2>
             <h3>Price: ₹{product.cost}</h3>
-            <button className="signup-button" onClick={()=>{addtoCart()}}>Add To Cart</button>
+            <button className="signup-button" onClick={()=>addtoCart()}>Add To Cart</button>
           </div>
         </div>
       )}
