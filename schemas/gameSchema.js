@@ -5,8 +5,9 @@ const gameSchema = new mongoose.Schema({
     assets: [{type: String}],
     installation_link: String,
     cost: Number,
-    images: [{type: String}],
-    videos: [{type: String}],
+    images: [String],
+    videos: [String],
+    description: String
 })
 
 module.exports = mongoose.model("Game", gameSchema)
