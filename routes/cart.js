@@ -56,7 +56,7 @@ router.post('/delete/:id', ensureAuthenticated, (req, res) => {
     res.send({ success: true });
 })
 
-router.post('/checkout', async (req, res) => {
+router.post('/checkout', async (req, res) => {  // need pushed price_id and products
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
@@ -68,7 +68,10 @@ router.post('/checkout', async (req, res) => {
       success_url: `/checkout-success`,
       cancel_url: `/`,
     });
-  
+    var lib = req.user.library;
+    lib.push(req.products)
+    req.user.library = lib
+    req.user.save()
     res.redirect(303, session.url);
   });
 
