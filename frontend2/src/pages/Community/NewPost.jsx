@@ -1,5 +1,5 @@
 import { Notyf } from "notyf";
-import { urlPrefix } from "../misc/resuse";
+import { urlPrefix } from "../../misc/resuse";
 import "./NewPost.css";
 
 export function NewPost() {
