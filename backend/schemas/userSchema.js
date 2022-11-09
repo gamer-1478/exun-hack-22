@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
     },
     userId: reqString,
     isAdmin: Boolean,
+    cartid: String,
     cart: [String],
     orders: [String],
     library: [String],
