@@ -3,7 +3,7 @@ const Post = require('../schemas/postSchema');
 const userSchema = require('../schemas/userSchema');
 const router = require('express').Router();
 
-router.get('/', ensureAuthenticated, async (req, res) => {
+router.get('/', async (req, res) => {
     Post.find({}).sort({ date: -1 }).exec(async (err, posts) => {
         if (err) {
             console.log(err);
@@ -33,7 +33,7 @@ router.get('/new', ensureAuthenticated, (req, res) => {
     res.render('newPost', { user: req.user });
 })
 
-router.get('/:id', ensureAuthenticated, async (req, res) => {
+router.get('/:id', async (req, res) => {
     Post.findById(req.params.id).exec(async (err, post) => {
         if (err) {
             console.log(err);

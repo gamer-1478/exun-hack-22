@@ -50,7 +50,7 @@ export const urlPrefix = () => {
         return "http://localhost:8080"
     }
     else {
-        return "https://hcet-studio.herokuapp.com/";
+        return "https://hcet-studio.herokuapp.com";
     }
 };
 
