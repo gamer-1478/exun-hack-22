@@ -9,6 +9,7 @@ const bodyparser = require('body-parser');
 const ejs  = require('ejs');
 const cors = require('cors');
 const passportInit = require('./middleware/passport.js')
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 //file imports
 const landing = require('./routes/landing')
