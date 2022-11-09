@@ -21,6 +21,15 @@ body {
   filter: blur(1px);
 }
 
+.cart-icon {
+  position: relative;
+  width: 30px;
+  filter: invert(1);
+  height: 30px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
 .min-height {
   margin-top: 0px !important;
   min-height: calc(100vh + 80px);

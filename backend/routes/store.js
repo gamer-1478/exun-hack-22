@@ -5,7 +5,21 @@ const Game = require('../schemas/gameSchema');
 router.get('/', async (req, res)=> {
     try{
         const games = await Game.find({})
-        res.render('store', {games, path: process.cwd()})
+        //break games in groups of 3
+        const gamesGroups = []
+        let group = []
+        games.forEach((game, index) => {
+            group.push(game)
+            if(index % 3 === 2){
+                gamesGroups.push(group)
+                group = []
+            }
+        })
+        if(group.length > 0){
+            gamesGroups.push(group)
+        }
+        
+        res.send(gamesGroups)
     }catch(err){
         res.send({"msg":`${err}`})
     }

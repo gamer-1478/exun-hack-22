@@ -77,9 +77,25 @@
     font-size: 1.2vw !important;
 }
 
-@media screen and (max-width: 960px) {
+.btn--primary--black {
+    padding: 0.8vw 1.2vw;
+    border-radius: 0.5vw;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #00ae40;
+    color: #fff;
+    border: 1px solid #00ae40;
+    border-radius: 0.2vw;
+    padding: 0.8vw 2.0vw;
+    font-size: 2vw;
+}
 
-    .nav-item, .navbar-container {
+@media screen and (max-width: 960px) {
+    .cart-icon {
+        display: none;
+    }
+     .nav-item, .navbar-container {
         font-size: 1.2rem;
         height: 80px;
     }
@@ -172,4 +188,5 @@
         color: #242424;
         transition: 250ms;
     }
+
 }
