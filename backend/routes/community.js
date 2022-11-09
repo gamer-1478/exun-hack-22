@@ -37,12 +37,12 @@ router.get('/:id', ensureAuthenticated, async (req, res) => {
     Post.findById(req.params.id).exec(async (err, post) => {
         if (err) {
             console.log(err);
-            res.render('error', { user: req.user, error: err });
+            res.send(err);
         }
         else {
             post = post.toObject();
             post.author = await userSchema.findById(post.author);
-            res.render('post', { user: req.user, post: post });
+            res.send(post);
         }
     })
 })

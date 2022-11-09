@@ -1,7 +1,7 @@
 import { Notyf } from "notyf";
 import { useEffect } from "react";
 import { useState } from "react";
-import { urlPrefix } from "../misc/resuse";
+import { urlPrefix } from "../../misc/resuse";
 import "./Community.css";
 
 export function Community() {

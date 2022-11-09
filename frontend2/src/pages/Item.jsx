@@ -1,3 +1,4 @@
+import { Notyf } from "notyf";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
@@ -5,6 +6,7 @@ import { urlPrefix } from "../misc/resuse";
 import "./Item.css";
 
 export default function ItemPage() {
+  var notyf = new Notyf();
   const [product, setProduct] = useState();
   var { gameId } = useParams();
 
@@ -24,14 +26,14 @@ export default function ItemPage() {
 
   function addtoCart() {
     fetch(urlPrefix() + "/cart/add/" + gameId, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
       credentials: "include",
     }).then(async (response) => {
       var res = await response.json();
-      console.log(res);
+      notyf.success(res.msg);
     });
   }
   return (
