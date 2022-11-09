@@ -42,21 +42,21 @@ function NavigationBar() {
                 <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                     <li className='nav-item'>
                         <Link
-                            to='/Store' className='nav-links' onClick={() => { closeMobileMenu() }}>
+                            to='/store' className='nav-links' onClick={() => { closeMobileMenu() }}>
                             Store
                         </Link>
                     </li >
 
                     <li className='nav-item'>
                         <Link
-                            to='/Practice' className='nav-links' onClick={closeMobileMenu}>
+                            to='/community' className='nav-links' onClick={closeMobileMenu}>
                             Community
                         </Link>
                     </li>
 
                     <li className='nav-item'>
                         <Link
-                            to='/Support' className='nav-links' onClick={closeMobileMenu}>
+                            to='/support' className='nav-links' onClick={closeMobileMenu}>
                             Support
                         </Link>
                     </li>
@@ -66,7 +66,7 @@ function NavigationBar() {
                         <>
                         <li>
                             <Link to='/cart'
-                                className='nav-links' onClick={closeMobileMenu}>
+                                className='nav-links-mobile' onClick={closeMobileMenu}>
                                 Cart
                             </Link>
                         </li>

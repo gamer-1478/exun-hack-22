@@ -1,8 +1,7 @@
-
 import { Notyf } from 'notyf';
-import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+
 import './Login.css'
-import { urlPrefix } from '../misc/resuse';
+import { urlPrefix } from '../../misc/resuse';
 // Create an instance of Notyf
 const notyf = new Notyf();
 
@@ -26,9 +25,9 @@ async function submit() {
       await notyf.success(
         "You have been successfully Logged In, redirecting Automatically!"
       );
-      // setTimeout(function () {
-      //   window.location.href = "/";
-      // }, 1000);
+      setTimeout(function () {
+        window.location.href = "/";
+      }, 1000);
     } else {
       await notyf.error(res.msg);
     }

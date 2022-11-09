@@ -1,118 +1,124 @@
-    .landing-title {
-        font-size: 3.2vw;
-        font-weight: bold;
-        color: #fff;
-        text-align: center;
-    }
+.landing-title {
+    font-size: 3.2vw;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
 
-    .store {
-        display: flex;
+.store {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 120vh;
+}
+
+.store-landing {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    height: 22vh;
+    background-color: #212121;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.same-line {
+    margin-top: 10px;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.productlist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.list-item {
+    width: 300px;
+    min-height: 300px;
+    background-color: #eee;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Jost', sans-serif;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.item-image {
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: white;
+    height: 220px;
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-title {
+    margin-top: 20px;
+    font-size: 1.9em;
+    font-weight: 600;
+    color: #000;
+    font-family: 'Jost', sans-serif;
+}
+
+.item-details {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'Jost', sans-serif;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 765px) {
+    .productlist {
         flex-direction: column;
-        align-items: center;
-        min-height: 120vh;
     }
 
     .store-landing {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 80%;
-        height: 22vh;
-        background-color: #212121;
-        border-radius: 20px;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        width: 75%;
+        height: 10vh;
     }
 
-    .same-line {
-        margin-top: 10px;
-        height: fit-content;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+    .landing-title {
+        font-size: 4.5vw;
     }
+}
 
-    .bold {
-        font-weight: bold;
-    }
-
-    .productlist {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-    }
-
-    .list-item {
-        width: 300px;
-        min-height: 300px;
-        background-color: #eee;
-        margin: 10px;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Jost', sans-serif;
-        border-radius: 10px;
-        margin-top: 10px;
-    }
-
-    .item-image {
-        margin-top: 10px;
-        border-radius: 10px;
-        background-color: white;
-        height: 220px;
-        width: 220px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .item-title {
-        margin-top: 20px;
-        font-size: 1.9em;
-        font-weight: 600;
-        color: #000;
-        font-family: 'Jost', sans-serif;
-    }
-
-    .item-details {
-        width: 220px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        font-family: 'Jost', sans-serif;
-        margin-bottom: 30px;
-    }
-
-    @media screen and (max-width: 765px) {
-        .productlist {
-            flex-direction: column;
-        }
-
-        .store-landing {
-            width: 75%;
-            height: 10vh;
-        }
-
-        .landing-title {
-            font-size: 4.5vw;
-        }
-    }
-
-    input {
-        width: 300px;
-        height: 30px;
-        border-radius: 15px;
-        border: 1px solid #BBBBBB;
-        padding: 10px;
-        margin-bottom: 10px;
-        background-color: transparent;
-    }
+input {
+    width: 300px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid #BBBBBB;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: transparent;
+}
