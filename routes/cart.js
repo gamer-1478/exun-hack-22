@@ -43,7 +43,7 @@ router.get('/add/:id', ensureAuthenticated, (req, res) => {
     cart.push(store_id);
     req.user.cart = cart
     req.user.save();
-    res.redirect('/')
+    res.send({msg: "Added to cart"})
 })
 
 router.post('/delete/:id', ensureAuthenticated, (req, res) => {
