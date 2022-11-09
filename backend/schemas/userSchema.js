@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
     cart: [String],
     orders: [String],
     library: [String],
+    total: Number,
 })
 
 module.exports = mongoose.model("User", userSchema)
