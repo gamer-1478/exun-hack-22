@@ -13,8 +13,8 @@ router.get('/game', (req, res)=>{
 
 router.post('/game', async (req, res) => {
     try {
-        const { game_name, assets, installation_link, cost, images, videos } = req.body;
-        if (!game_name || !installation_link || !cost || !images || !videos) {
+        const { game_name, assets, installation_link, cost, images, videos, description } = req.body;
+        if (!game_name || !installation_link || !cost || !images || !videos || !description) {
             return res.send({ errorMessage: "Please enter all required fields." });
         }
         if (cost < 0) {
@@ -24,14 +24,18 @@ router.post('/game', async (req, res) => {
         if (existingGame) {
             return res.send({ errorMessage: "Game already exists." });
         }
+        let imgArray = images.split(' ')
+        let assetsArray = assets.split(' ')
+        let vidArray = videos.split(' ')
         const newGame = new Game({
             id: uuid(),
             game_name,
-            assets,
+            assets:assetsArray,
             installation_link,
             cost,
-            images,
-            videos
+            images:imgArray,
+            videos:vidArray,
+            description
         });
         const savedGame = await newGame.save();
         res.json(savedGame);
