@@ -17,7 +17,7 @@ router.get('/', (req, res)=> {
         return product;
     })
     Promise.all(products).then(products => {
-        res.render("store/cart", { user: req.user, cart: products, total: total})
+        res.render("store/cart", { user: req.user, cart: products, total: total })
     }).catch(err => {
         console.log(err)
     })
