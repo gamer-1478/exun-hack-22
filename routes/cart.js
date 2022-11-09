@@ -17,21 +17,8 @@ router.get('/', (req, res) => {
         total += product.cost
         return product;
     })
-    var price_id;
     Promise.all(products).then(prods => {
-        stripe.products.create({
-            name: 'Cart Checkout',
-            description: 'Payment',
-        }).then(prod => {
-            stripe.prices.create({
-                unit_amount: total,
-                currency: 'inr',
-                prod: prod.id,
-            }).then(price => {
-                price_id = price.id;
-            });
-        });
-        res.render("cart", { user: req.user, cart: products, total: total, price_id})
+        res.render("cart", { user: req.user, cart: products, total: total})
     }).catch(err => {
         console.log(err)
     })
@@ -57,11 +44,29 @@ router.post('/delete/:id', ensureAuthenticated, (req, res) => {
     res.send({ success: true });
 })
 
-router.post('/checkout', async (req, res) => {  // need pushed price_id and products
+router.get('/checkout-confirm', async (req, res) => { //  need total and products from form
+
+
+    //create price obejct
+    var price_id;
+    stripe.products.create({
+        name: 'Cart Checkout',
+        description: 'Payment',
+    }).then(prod => {
+        stripe.prices.create({
+            unit_amount: req.body.total,
+            currency: 'inr',
+            prod: prod.id,
+        }).then(price => {
+            price_id = price.id;
+        });
+    });
+
+    // checkout session
     const session = await stripe.checkout.sessions.create({
       line_items: [
         {
-          price: req.price_id,
+          price: price_id,
           quantity: 1,
         },
       ],
@@ -69,6 +74,8 @@ router.post('/checkout', async (req, res) => {  // need pushed price_id and prod
       success_url: `/checkout-success`,
       cancel_url: `/`,
     });
+
+    //adding games to library
     var lib = req.user.library;
     lib.push(req.products)
     req.user.library = lib
