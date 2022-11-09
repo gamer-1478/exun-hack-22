@@ -81,5 +81,5 @@ app.use('/community', community)
 app.use('/cart', cart)
 
 //listen
-const PORT = 8080 || process.env.PORT
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => console.log(`Connected on port ${PORT}`))
