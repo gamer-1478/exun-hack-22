@@ -2,19 +2,23 @@ require("dotenv").config()
 const express = require('express')
 const app = express()
 const session = require('cookie-session');
-const passport = require('passport')
-const mongoose = require('mongoose')
+const passport = require('passport');
+const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
-const bodyparser = require('body-parser')
-const ejs  = require('ejs')
+const bodyparser = require('body-parser');
+const ejs  = require('ejs');
 const cors = require('cors');
 const passportInit = require('./middleware/passport.js')
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 //file imports
 const landing = require('./routes/landing')
 const auth = require('./routes/auth')
 const adminAdd = require('./routes/add')
 const store = require('./routes/store')
+const profile = require('./routes/profile')
+const community = require('./routes/community')
+const cart = require('./routes/cart.js')
 
 if (process.env.NODE_ENV === 'production') {
     app.enable('trust proxy');
@@ -59,7 +63,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(cookieParser(process.env.SESSION_SECRET));
 
 passportInit(passport)
-//initialize passport after this
+//initialize passport after thiss
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -72,6 +76,9 @@ app.use('/', landing)
 app.use('/auth', auth)
 app.use('/add', adminAdd)
 app.use('/store', store)
+app.use('/profile', profile)
+app.use('/community', community)
+app.use('/cart', cart)
 
 //listen
 const PORT = 8080 || process.env.PORT

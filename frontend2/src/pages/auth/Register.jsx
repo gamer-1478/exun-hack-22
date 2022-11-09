@@ -1,7 +1,7 @@
 import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css'; // for React, Vue and Svelte
 import './Register.css'
-import { urlPrefix } from '../misc/resuse';
+import { urlPrefix } from '../../misc/resuse';
 // Create an instance of Notyf
 const notyf = new Notyf();
 

@@ -10,7 +10,6 @@ router.get('/asset', (req, res)=>{
 router.get('/game', (req, res)=>{
     res.render('addgame', {path: process.cwd()})
 })
-
 router.post('/game', async (req, res) => {
     try {
         const { game_name, assets, installation_link, cost, images, videos, description } = req.body;

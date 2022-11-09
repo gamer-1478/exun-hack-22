@@ -32,7 +32,7 @@ router.get('/:gameId', async(req, res)=>{
         if(!game){
             res.send({"msg": "No Game Found!"})
         }else{
-            res.render('game', {path: process.cwd(), game})
+            res.send(game)
         }
     }catch(err){
         res.send({"msg":`${err}`})

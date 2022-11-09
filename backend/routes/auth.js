@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const User = require('../schemas/userSchema.js'),
+ Cart = require("../schemas/cartSchema.js"),
+
   bcrypt = require("bcrypt"),
   { uuid } = require('uuidv4'),
   passport = require('passport'),
@@ -25,12 +27,18 @@ router.post('/register', async (req, res) => {
         errors.push({ msg: "User already exists, try logging in instead." })
         return res.send(errors)
       }
+      const cartId = uuid()
       const userId = uuid();
+      const newCart = new Cart ({
+        id: cartId,
+        user_id: userId,
+      })
       const newUser = new User({
         name: name,
         email: email,
         password: password,
         userId: userId,
+        cartid: cartId
       });
       bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -78,6 +86,11 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/user', (req, res) => {
   res.send(req.user)
+})
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.send({ "msg": "Successfully logged out" });
 })
 
 module.exports = router;

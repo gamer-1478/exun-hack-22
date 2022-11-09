@@ -7,7 +7,7 @@ export default function Store() {
   function change(productId) {
     window.location.href = "/store/view/" + productId;
   }
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState();
 
   useEffect(() => {
     fetch(urlPrefix() + "/store", {
@@ -26,7 +26,7 @@ export default function Store() {
   return (
     <div class="store">
       <div class="store-landing">
-        <h1 class="landing-title">New Games? Its all here!</h1>
+        <h1 class="landing-title">New Retro Games? Its all here!</h1>
       </div>
       {!products ? (
         <div>
@@ -39,7 +39,7 @@ export default function Store() {
               return (<div class="productlist">
                 {productlist.map((product) => {
                   return (
-                  <div class="list-item" onclick={() => change(product.id)}>
+                  <div class="list-item" onClick={() => change(product.id)}>
                     <div class="item-image">
                       <img
                         height="200px"
@@ -53,7 +53,7 @@ export default function Store() {
                       <div class="same-line">
                         <p class="price">
                           {" "}
-                          <span class="bold"> Cost: {product.cost}</span>{" "}
+                          <span class="bold"> Cost: ₹{product.cost}</span>{" "}
                         </p>
                       </div>
                     </div>
