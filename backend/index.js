@@ -2,11 +2,11 @@ require("dotenv").config()
 const express = require('express')
 const app = express()
 const session = require('cookie-session');
-const passport = require('passport')
-const mongoose = require('mongoose')
+const passport = require('passport');
+const mongoose = require('mongoose');
 const cookieParser = require("cookie-parser");
-const bodyparser = require('body-parser')
-const ejs  = require('ejs')
+const bodyparser = require('body-parser');
+const ejs  = require('ejs');
 const cors = require('cors');
 const passportInit = require('./middleware/passport.js')
 
@@ -17,6 +17,7 @@ const adminAdd = require('./routes/add')
 const store = require('./routes/store')
 const profile = require('./routes/profile')
 const community = require('./routes/community')
+const cart = require('./routes/cart.js')
 
 if (process.env.NODE_ENV === 'production') {
     app.enable('trust proxy');
@@ -76,6 +77,7 @@ app.use('/add', adminAdd)
 app.use('/store', store)
 app.use('/profile', profile)
 app.use('/community', community)
+app.use('/cart', cart)
 
 //listen
 const PORT = 8080 || process.env.PORT
