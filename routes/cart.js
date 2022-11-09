@@ -36,7 +36,7 @@ router.get('/add/:id', ensureAuthenticated, (req, res)=>{
 router.post('/delete/:id', ensureAuthenticated, (req, res) => {
     var id = req.params.id;
     var cart = req.user.cart;
-    var index = cart.findIndex(product => product.prodid === id);
+    var index = cart.findIndex(product => product.id === id);
     cart.splice(index, 1);
     req.user.cart = cart;
     req.user.save();
