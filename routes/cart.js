@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
                 const price_id = price.id;
             });
         });
-        res.render("cart", { user: req.user, cart: products, total: total, price_id})
+        res.send({ user: req.user, cart: products, total: total, price_id})
     }).catch(err => {
         console.log(err)
     })
