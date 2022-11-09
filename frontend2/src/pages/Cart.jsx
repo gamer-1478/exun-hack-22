@@ -36,6 +36,7 @@ export function Cart() {
         window.location.reload()
       });
   }
+
 return(
     <div>
 
@@ -50,8 +51,8 @@ return(
         {cart.map((element) => (
             <div className="cart-element">
                 <div className="image"><img src={element.images[0]} alt="image"></img></div>
-                <div className="game">{element.game_name}</div>
-                <div className="game">{element.cost}</div>
+                <div className="game">  {element.game_name}</div>
+                <div className="cost">{element.cost}</div>
                 <button class='dlt' onClick={()=>{del(element.id)}}>Delete</button>
             </div>
       ))}
