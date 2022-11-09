@@ -5,6 +5,7 @@ const assetSchema = new mongoose.Schema({
     asset_name: String,
     url: String,
     description: String,
+    cost: Number,
 })
 
 module.exports= mongoose.model("Asset", assetSchema)
