@@ -6,21 +6,18 @@ const mongoose = require('mongoose'),
     now = new Date(),
     dateStringWithTime = moment(now).format('YYYY-MM-DD HH:MM:SS');
 
-const userSchema = new mongoose.Schema({
-    email: reqString,
-    name: reqString,
-    password: reqString,
+const postSchema = new mongoose.Schema({
+    author: reqString,
+    title: reqString,
+    type: reqString,
+    content: reqString,
+    comments: [{ author: reqString, content: reqString }],
     date: {
         type: String,
         default: dateStringWithTime
     },
-    userId: reqString,
-    isAdmin: Boolean,
-    cartid: String,
-    cart: [String],
-    orders: [String],
-    library: [String],
-    total: Number,
+    likes: [nonreqString],
+    dislikes: [nonreqString]
 })
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("Community", postSchema)
